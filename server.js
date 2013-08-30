@@ -18,3 +18,13 @@ client.get('color', function(err, value) {
     console.log('Got: ' + value);
 });
 
+client.hmset('camping', {
+    'shelter': '2-person tent',
+    'cooking': 'campstove'
+}, redis.print);
+
+client.hmget('camping', 'cooking', function(err, value){
+    if (err) throw err;
+    console.log('Will be cooking with: ' + value);
+});
+
