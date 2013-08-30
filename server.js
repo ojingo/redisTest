@@ -34,3 +34,28 @@ client.hkeys('camping', function(err, keys) {
         console.log(' ' + key);
     });
 });
+
+
+// storage of values in a list!
+
+client.lpush('tasks', 'Paint the bikeshed red.', redis.print);
+client.lpush('tasks', 'Paint the bikeshed green.', redis.print);
+client.lrange('tasks', 0, -1, function(err, items) {
+    if(err) throw err;
+    items.forEach(function(item) {
+        console.log(' ' + item);
+    });
+});
+
+// sets
+
+client.sadd('ip_addresses', '204.10.37.96', redis.print);
+client.sadd('ip_addresses', '204.10.37.96', redis.print);
+client.sadd('ip_addresses', '72.32.231.8', redis.print);
+client.smembers('ip_addresses', function(err, members) {
+    if(err) throw err;
+    console.log(members);
+});
+
+
+
